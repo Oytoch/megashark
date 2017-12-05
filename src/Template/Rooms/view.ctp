@@ -57,6 +57,5 @@
                 <td><?= h($showtime->start ) ?></td>
                 <td><?= h($showtime->end ) ?></td>
             </tr>
-        <?php  endforeach; ?>
     </table>
 </div>

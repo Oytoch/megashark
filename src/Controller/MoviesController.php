@@ -34,11 +34,29 @@ class MoviesController extends AppController
      */
     public function view($id = null)
     {
-        $movie = $this->Movies->get($id, [
+        /*$movie = $this->Movies->get($id, [
             'contain' => []
-        ]);
+        ]);*/
+        
+        $movies = $this->Movies->find('all',array(
+        'conditions' => array('Movies.id =' => $id),
+        'contain' => array('Showtimes'=> 
+                        array('conditions' => 
+                            array('Showtimes.movie_id =' => $id)))
+        
+        ));
+        
+        $
+        /*
+        'fields' => [
+        'Movies.name',
+        'Movies.duration',
+        'Showtimes.start',
+        'Showtimes.end']*/
+        
+       
 
-        $this->set('movie', $movie);
+        $this->set('movies', $movies);
         $this->set('_serialize', ['movie']);
     }
 

@@ -40,8 +40,7 @@ class RoomsController extends AppController
         ]);
 
         $showtimes = $this->Rooms->Showtimes->find('all',array(
-        'contain' => array(
-        'Movies'),
+        'contain' => array('Movies'),
         'fields' => array(
         'Movies.name',
         'Movies.duration',
