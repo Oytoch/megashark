@@ -38,15 +38,16 @@ class MoviesController extends AppController
             'contain' => []
         ]);*/
         
-        $movies = $this->Movies->find('all',array(
+        $movie = $this->Movies->find('all',array(
         'conditions' => array('Movies.id =' => $id),
         'contain' => array('Showtimes'=> 
                         array('conditions' => 
-                            array('Showtimes.movie_id =' => $id)))
+                            array('Showtimes.movie_id =' => $id))),
+        'limit' => 1
         
-        ));
+        ))->first();
         
-        $
+        
         /*
         'fields' => [
         'Movies.name',
@@ -56,7 +57,7 @@ class MoviesController extends AppController
         
        
 
-        $this->set('movies', $movies);
+        $this->set('movie', $movie);
         $this->set('_serialize', ['movie']);
     }
 

@@ -51,12 +51,12 @@
         <?= $this->Text->autoParagraph(h($movie->description)); ?>
     </div>
     <div class="related">
-        <h4><?= __('Liste des difusions') ?></h4>
+        <h3><?= __('Liste des difusions') ?></h3>
         <table>
             <tr>
                 <th scope="row"> date</th>
             <tr>
-        <?php foreach ($movies->showtimes as $showtime): ?>
+        <?php foreach ($movie->showtimes as $showtime): ?>
             <tr> 
                 <td><?= h($showtime->start) ?><td>
             <tr>
