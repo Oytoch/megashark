@@ -42,7 +42,10 @@ class MoviesController extends AppController
         'conditions' => array('Movies.id =' => $id),
         'contain' => array('Showtimes'=> 
                         array('conditions' => 
-                            array('Showtimes.movie_id =' => $id))),
+                            array('Showtimes.movie_id =' => $id)
+                        ), 
+                            'Rooms' 
+                     ),
         'limit' => 1
         
         ))->first();

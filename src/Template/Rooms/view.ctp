@@ -44,18 +44,22 @@
     <table>
         <thead>
         <tr>
-            <th scope="col">nom</th>
-            <th scope="col">duree</th>
-            <th scope="col">debut</th>
-            <th scope="col">fin</th>
+            <th scope="col">L</th>
+            <th scope="col">M</th>
+            <th scope="col">M</th>
+            <th scope="col">J</th>
+            <th scope="col">V</th>
+            <th scope="col">S</th>
+            <th scope="col">D</th>
         </tr>
         </thead>
-        <?php foreach ($showtimes as $showtime): ?>
+        <?php for ($i;$i < 0 ; $i++: ?>
             <tr>
-                <td><?= h($showtime->movie->name ) ?></td>
+                <td><?= h($film->name ) ?></td>
                 <td><?= h($showtime->movie->duration ) ?></td>
                 <td><?= h($showtime->start ) ?></td>
                 <td><?= h($showtime->end ) ?></td>
             </tr>
+        <?php endforeach;  ?>
     </table>
 </div>

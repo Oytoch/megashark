@@ -39,17 +39,19 @@ class RoomsController extends AppController
             ]
         ]);
 
-        $showtimes = $this->Rooms->Showtimes->find('all',array(
-        'contain' => array('Movies'),
-        'fields' => array(
-        'Movies.name',
-        'Movies.duration',
-        'Showtimes.start',
-        'Showtimes.end')
-        
-        ));
+        $showtimes = $this
+            ->Rooms
+            ->Showtimes
+            ->find('all')
+            ->contain('Movies')
+            ->where(['Showtimes.room_id =' => $id,
+                     'Showtimes.start >=' => (new \DateTime('monday this week')),
+                     'Showtimes.end <=' => (new \DateTime('sunday this week'))]);
+        foreach ($showtimes as $showtime)
+            $films[$showtime->start->format('N')][] = $showtime;
+            
+        $this->set('film',$films);
         $this->set('showtimes',$showtimes);
-        
         $this->set('room', $room);
         $this->set('_serialize', ['room']);
     }
