@@ -56,17 +56,20 @@
     <table>
     <div id="contentBox" style="margin:0px auto; width:70%">
         <?php for($i=0;$i<7;$i++): ?>
-            <div style="float:left; margin:0; width:14.2%;">
-                <p>
+            <table style="float:left; margin:0; width:14.2%;">
                 <?php 
                     if(isset($films[$i])):
-                        $film  = $films[$i];
-                        echo h($film ); 
+                        foreach($films[$i] as $film): ?>
+                        <tr>
+                            <td>
+                                <?= h($film->movie->name ); ?>
+                            </td>
+                        </tr>
+                      <?php endforeach;
                     else:
-                        echo "<p> Pas de film prévu";
+                        echo "<tr><td> Pas de film prévu </td></tr>";
                 endif;?>
-                </p>
-            </div>
+            </table>
         <?php endfor;  ?>      
     </div>
 </div>
