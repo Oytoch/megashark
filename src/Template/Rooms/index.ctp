@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($rooms as $room): ?>
+            <?php foreach ($films as $film): ?>
             <tr>
                 <td><?= $this->Number->format($room->id) ?></td>
                 <td><?= h($room->name) ?></td>
