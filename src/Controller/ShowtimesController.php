@@ -116,4 +116,36 @@ class ShowtimesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function planning(){
+        $planning = $this->Showtimes->newEntity();
+        $rooms = $this->Showtimes->Rooms->find('list', ['limit' => 200]);
+        
+        if ($this->request->is('post')) {
+            //$room = $this->Showtimes->patchEntity($planning, $this->request->getData());
+            $room = $this->request->data("salle");
+            
+            $showtimes = $this
+            ->Showtimes
+            ->find('all')
+            ->contain('Movies')
+            ->where(['Showtimes.room_id =' => $room,
+                     'Showtimes.start >=' => (new \DateTime('monday this week')),
+                     'Showtimes.end <=' => (new \DateTime('sunday this week'))])
+            ->order(['Showtimes.start'=>'ASC']);
+            $films = array();
+            foreach ($showtimes as $showtime){
+                if($showtime->start->format('N') == 0)
+                    $films[6][] = $showtime;
+                else
+                    $films[$showtime->start->format('N')-1][] = $showtime;
+            };
+            
+            $this->set('films',$films);
+       }
+        
+            
+        $this->set('rooms',$rooms);
+        $this->set('planning',$planning);
+        
+    }
 }

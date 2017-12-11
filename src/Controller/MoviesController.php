@@ -34,21 +34,11 @@ class MoviesController extends AppController
      */
     public function view($id = null)
     {
-        /*$movie = $this->Movies->get($id, [
+        $movie = $this->Movies->get($id, [
             'contain' => []
-        ]);*/
+        ]);
         
-        $movie = $this->Movies->find('all',array(
-        'conditions' => array('Movies.id =' => $id),
-        'contain' => array('Showtimes'=> 
-                        array('conditions' => 
-                            array('Showtimes.movie_id =' => $id)
-                        ), 
-                            'Rooms' 
-                     ),
-        'limit' => 1
-        
-        ))->first();
+       
         
         
         /*
@@ -75,7 +65,7 @@ class MoviesController extends AppController
         if ($this->request->is('post')) {
             
             $movie = $this->Movies->patchEntity($movie, $this->request->getData());
-            ;
+            
             if ($this->Movies->save($movie)) {
                 $this->Flash->success(__('The movie has been saved.'));
 
@@ -131,4 +121,6 @@ class MoviesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+
 }

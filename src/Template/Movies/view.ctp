@@ -50,18 +50,6 @@
         <h4><?= __('Description') ?></h4>
         <?= $this->Text->autoParagraph(h($movie->description)); ?>
     </div>
-    <div class="related">
-        <h3><?= __('Liste des difusions') ?></h3>
-        <table>
-            <tr>
-                <th scope="row"> date</th>
-            <tr>
-        <?php foreach ($movie->showtimes as $showtime): ?>
-            <tr> 
-                <td><?= h($showtime->start) ?><td>
-            <tr>
-        <?php  endforeach; ?>
-        </table>
-    </div>
+   
 </div>
 

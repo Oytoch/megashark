@@ -62,7 +62,9 @@
                         foreach($films[$i] as $film): ?>
                         <tr>
                             <td>
-                                <?= h($film->movie->name ); ?>
+                                <?= h($film->movie->name ); ?></br>
+                                de <?= h($film->start->i18nFormat('HH:mm')); ?></br>
+                                à <?= h($film->end->i18nFormat('HH:mm')); ?></br>
                             </td>
                         </tr>
                       <?php endforeach;

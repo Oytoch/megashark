@@ -46,7 +46,8 @@ class RoomsController extends AppController
             ->contain('Movies')
             ->where(['Showtimes.room_id =' => $id,
                      'Showtimes.start >=' => (new \DateTime('monday this week')),
-                     'Showtimes.end <=' => (new \DateTime('sunday this week'))]);
+                     'Showtimes.end <=' => (new \DateTime('sunday this week'))])
+            ->order(['Showtimes.start'=>'ASC']);
         foreach ($showtimes as $showtime){
             if($showtime->start->format('N') == 0)
                 $films[6][] = $showtime;
